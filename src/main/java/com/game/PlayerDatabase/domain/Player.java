@@ -26,7 +26,7 @@ public class Player {
 	@Getter @Setter private Server server;
 	
 	public Player() {
-		super();
+		
 	}
 	
 	public Player(String playerName, String name, Integer birthDateYear, String email, String password, Server server) {

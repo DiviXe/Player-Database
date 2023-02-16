@@ -2,6 +2,8 @@ package com.game.PlayerDatabase.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +28,7 @@ public class Server {
 	 @Getter @Setter private ServerComputer servercomputer;
 	 
 	 @OneToMany(mappedBy = "server", cascade = CascadeType.ALL)
+	 @JsonIgnore
 	 @Getter @Setter private List<Player> players;
 	
 	public Server() {

@@ -62,6 +62,7 @@ public class PlayerController {
 	public String addPlayer(Model model) {
 		model.addAttribute("player", new Player());
 		model.addAttribute("servers", srepository.findAll());
+		model.addAttribute("servercomputers", screpository.findAll());
 		return "addplayer";
 	}
 	
@@ -69,7 +70,7 @@ public class PlayerController {
 	@PostMapping("/save")
 	public String savePlayer(Player player) {
 		prepository.save(player);
-		return "redirect:payerlist";
+		return "redirect:playerlist";
 	}
 	//delete the player function 
 	@GetMapping("/delete/{id}")
