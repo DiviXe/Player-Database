@@ -12,25 +12,55 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 public class Server {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Getter @Setter private Long id;
-	@Getter @Setter private String serverName;
+	private Long id;
+	private String serverName;
 	
 	//creating link
 	 @ManyToOne
 	 @JoinColumn(name = "servercomputerid")
-	 @Getter @Setter private ServerComputer servercomputer;
+	 private ServerComputer servercomputer;
 	 
 	 @OneToMany(mappedBy = "server", cascade = CascadeType.ALL)
 	 @JsonIgnore
-	 @Getter @Setter private List<Player> players;
+	 private List<Player> players;
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getServerName() {
+		return serverName;
+	}
+
+	public void setServerName(String serverName) {
+		this.serverName = serverName;
+	}
+
+	public ServerComputer getServercomputer() {
+		return servercomputer;
+	}
+
+	public void setServercomputer(ServerComputer servercomputer) {
+		this.servercomputer = servercomputer;
+	}
+
+	public List<Player> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(List<Player> players) {
+		this.players = players;
+	}
+
 	public Server() {
 		super();
 	}

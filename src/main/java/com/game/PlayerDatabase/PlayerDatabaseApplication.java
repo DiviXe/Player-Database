@@ -20,6 +20,8 @@ import com.game.PlayerDatabase.domain.ServerRepository;
 @SpringBootApplication
 public class PlayerDatabaseApplication {
 	private static final Logger log = LoggerFactory.getLogger(PlayerDatabaseApplication.class);
+	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(PlayerDatabaseApplication.class, args);
 	}
@@ -30,14 +32,9 @@ public class PlayerDatabaseApplication {
 	public CommandLineRunner  demoData(PlayerRepository prepository, ServerRepository srepository, ServerComputerRepository screpository) {
 		return (args) -> {
 	
-			//server computers to the database 
-			log.info("Save servercomputers to the serverlist");
-			//IMPLEMENTING TEST
-			screpository.save(new ServerComputer("asd", "asd", "asd"));
-			
 			
 			//servers to the database itself
-			log.info("Save servers to the serverlist");
+			log.info("Save servers to the serverlist only admin can access servers and add new ones");
 			
 			srepository.save(new Server("Randuins"));
 			srepository.save(new Server("Albama"));
@@ -57,9 +54,26 @@ public class PlayerDatabaseApplication {
 			prepository.save(new Player("Sufule", "Sulkka Pulkka", 1990, "textanddrive@gmail.com", "SickBoi353", srepository.findByServerName("Ragnaros").get(0)));
 			prepository.save(new Player("ArcEnemy", "Erk Herb", 1999, "erbge@gmail.com", "Thesetters99", srepository.findByServerName("Ragnaros").get(0)));
 			
+			
+			//server computers to the database 
+			log.info("Save servercomputers to the serverlist only admin can access computers and add new ones");
+			//IMPLEMENTING TEST
+			screpository.save(new ServerComputer("Test", "Test", "Test", srepository.findByServerName("Randuins").get(0)));
+			
+			
 			log.info("Fetch all players");
 			for (Player player: prepository.findAll( )) {
 				log.info(player.toString());
+			}
+			
+			log.info("Fetch all servers");
+			for (Server server: srepository.findAll( )) {
+				log.info(server.toString());
+			}
+			
+			log.info("Fetch all Server computers");
+			for (ServerComputer servercomputer: screpository.findAll( )) {
+				log.info(servercomputer.toString());
 			}
 		};
 	}

@@ -1,6 +1,5 @@
 package com.game.PlayerDatabase.domain;
 
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -9,23 +8,25 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 public class ServerComputer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Getter @Setter private Long id;
+	 private Long id;
 	
-	@Getter @Setter private String computerName;
-	@Getter @Setter private String computerStatus;
-	@Getter @Setter private String serverCapacity;
+	private String computerName;
+	 private String computerStatus;
+	 private String serverCapacity;
 	
 	@OneToMany(mappedBy = "servercomputer", cascade = CascadeType.ALL)
 	@JsonIgnore
-	@Getter @Setter private List<Server> servers;
+	@ManyToOne
+	@JoinColumn(name = "server_id")
+	 private Server server;
 	
 	
 	public ServerComputer() {
@@ -33,13 +34,65 @@ public class ServerComputer {
 	}
 
 	
-	public ServerComputer(String computerName, String computerStatus, String serverCapacity) {
-		super();
-		this.computerName = computerName;
-		this.computerStatus = computerStatus;
-		this.serverCapacity = serverCapacity;
-		//this.servers = servers;
+	public ServerComputer(String computerName, String computerStatus, String serverCapacity, Server server) {
+	    super();
+	    this.computerName = computerName;
+	    this.computerStatus = computerStatus;
+	    this.serverCapacity = serverCapacity;
+	    this.server = server;
 	}
+	
+	
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public String getComputerName() {
+		return computerName;
+	}
+
+
+	public void setComputerName(String computerName) {
+		this.computerName = computerName;
+	}
+
+
+	public String getComputerStatus() {
+		return computerStatus;
+	}
+
+
+	public void setComputerStatus(String computerStatus) {
+		this.computerStatus = computerStatus;
+	}
+
+
+	public String getServerCapacity() {
+		return serverCapacity;
+	}
+
+
+	public void setServerCapacity(String serverCapacity) {
+		this.serverCapacity = serverCapacity;
+	}
+
+
+	public Server getServer() {
+		return server;
+	}
+
+
+	public void setServer(Server server) {
+		this.server = server;
+	}
+
 
 	@Override
 	public String toString() {

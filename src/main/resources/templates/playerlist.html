@@ -6,8 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     
 </head>
-<body>
-	<h1>List of players who are online</h1>
+<body class="bg-secondary">
+	<h1 class="text-center">List of players who are online</h1>
 	<table class="table table-striped table-dark">
 	<thead>
 	<tr>
@@ -17,7 +17,6 @@
 	<th scope ="col">Email</th>
 	<th scope ="col">Password</th>
 	<th scope ="col">Server</th>
-	<th scope ="col">Server Computer</th>
 	</tr>
 	<tbody>
 		<tr th:each = "player : ${players}">
@@ -26,13 +25,28 @@
 		<td th:text="${player.birthDateYear}">
 		<td th:text="${player.email}">
 		<td th:text="${player.password}">
-		<td th:text="${player.server.name}">
+		<td th:text="${player.server.serverName}">
+		
 		<td class="btn btn-success" style="width: 150px;height: 50px;" > <a th:href="@{/edit/{id}(id=${player.id})}">Edit Player</a></td>
 		<td class="btn btn-danger" style="width: 150px;height: 50px; margin-bottom: 2%;" > <a th:href="@{/delete/{id}(id=${player.id})}">Delete Player</a></td>
 	</tbody>
 	</table>
 	<button onclick="location.href='http://localhost:8080/add'" class="btn btn-success" style="width: 150px;height: 50px" >Add Player</button>
+	<button onclick="location.href='http://localhost:8080/serverconfig'" class="btn btn-success" style="width: 220px;height: 50px" >Server Configuration</button>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
+	</div>
 	
 	
     </body>
+    
+<style>
+body {
+background-color: #f8f9fa;
+}
+</style>
+
 </html>
+
