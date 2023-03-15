@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Adding new server</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+</head>
+<body class="bg-secondary">
+  <div class="container text-center">
+    <h1>Add server</h1>
+    <div style="display: flex; justify-content: center; align-items: center;">
+    <div class="col-md-4">
+    
+	<form th:object="${server}" th:action="@{/saveServer}" action="#" method="post">
+        <label for="serverName"> Server name</label>
+        <input type="text" id="serverName" th:field="*{serverName}" class="form-control"/>
+        <div th:if="${#fields.hasErrors('serverName')}" th:errors="*{serverName}">The name cannot be resolved</div>
+        <div style="clear: both; display: block; height: 15px;"></div>
+        
+        <label for="capacity"> Server Capacity</label>
+        <input type="text" id="capacity" th:field="*{capacity}" class="form-control"/>
+        <div style="clear: both; display: block; height: 15px;"></div>
+        
+        <div style="clear: both; display: block; height: 15px;"></div>
+        <input type="submit" class="btn btn-primary" value="Save server">
+      </form>
+    </div>
+    </div>
+  </div>
+</body>
+<style>
+  body {
+    background-color: #f8f9fa;
+  }
+</style>
+</html>

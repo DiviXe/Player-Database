@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Editing an existing player</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+</head>
+<body class="bg-secondary">
+  <div class="container text-center">
+    <h1>Edit the player</h1>
+    <div style="display: flex; justify-content: center; align-items: center;">
+    
+    <div class="col-md-4">
+    
+      <form th:object="${player}" th:action="@{../save}" action="#" method="post">
+      <input type="hidden" id="id" th:field="*{id}" />
+        <label for="playerName"> Player name</label>
+        <input type="text" id="playerName" th:field="*{playerName}" class="form-control"/>
+        <div th:if="${#fields.hasErrors('playerName')}" th:errors="*{playerName}">The name cannot be resolved</div>
+        <div style="clear: both; display: block; height: 15px;"></div>
+        
+        <label for="name"> Real name</label>
+        <input type="text" id="name" th:field="*{name}" class="form-control"/>
+        <div style="clear: both; display: block; height: 15px;"></div>
+        
+        <label for="bdate"> Birthdate</label>
+        <input type="text" min="500" id="bdate" th:field="*{birthDateYear}" class="form-control"/>
+        <div style="clear: both; display: block; height: 15px;"></div>
+        
+        <label for="email"> Email</label>
+        <input type="text" id="email" th:field="*{email}" class="form-control"/>
+        <div style="clear: both; display: block; height: 15px;"></div>
+        
+        <label for="password"> Password</label>
+        <input type="password" min="1" th:field="*{password}" class="form-control"/> 
+        <div style="clear: both; display: block; height: 15px;"></div>
+        
+        <label for="servlist">Server selection</label>
+        <select id="servlist" th:field="*{server}" class="form-control">
+          <option th:each="server: ${servers}" th:value="${server.id}" th:text="${server.serverName}"></option>
+        </select>
+        <div style="clear: both; display: block; height: 15px;"></div>
+        <input type="submit" class="btn btn-primary" value="save">
+      </form>
+    </div>
+    </div>
+  </div>
+</body>
+<style>
+  body {
+    background-color: #f8f9fa;
+  }
+</style>
+</html>

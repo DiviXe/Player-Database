@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.game.PlayerDatabase.domain.Player;
 import com.game.PlayerDatabase.domain.PlayerRepository;
-import com.game.PlayerDatabase.domain.Server;
-import com.game.PlayerDatabase.domain.ServerComputerRepository;
 import com.game.PlayerDatabase.domain.ServerRepository;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class PlayerController {
@@ -30,27 +32,6 @@ public class PlayerController {
 	
 	@Autowired
 	private ServerRepository srepository;
-	
-	@Autowired
-	private ServerComputerRepository screpository;
-	
-	//RESTful way to show all players
-	@GetMapping("players")
-	public @ResponseBody List<Player> playerListRest() {
-		return (List<Player>) prepository.findAll();
-	}
-	
-	//RESful way to see all servers
-	@GetMapping("servers")
-	public @ResponseBody List<Server> serverListRest() {
-		return (List<Server>) srepository.findAll();
-	}
-	
-	//Player by ID REST
-	@GetMapping("/player/{id}")
-	public @ResponseBody Optional<Player> findPlayerRest(@PathVariable("id") Long playerId) {
-		return prepository.findById(playerId);
-	}
 	
 	
 	//Show all players
@@ -65,26 +46,31 @@ public class PlayerController {
 	public String addPlayer(Model model) {
 		model.addAttribute("player", new Player());
 		model.addAttribute("servers", srepository.findAll());
-		model.addAttribute("servercomputers", screpository.findAll());
 		return "addplayer";
 	}
 	
-	//save the player
+	//save the player with validation error
 	@PostMapping("/save")
-	public String savePlayer(Player player) {
+	public String save(@Valid @ModelAttribute ("player") Player player, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			System.out.println("Validation error has happened, please recheck.");
+			model.addAttribute("servers", srepository.findAll());
+			return "addplayer";
+		}
 		prepository.save(player);
 		return "redirect:playerlist";
 	}
+	
 	//delete the player function 
-	@GetMapping("/delete/{id}")
+	@GetMapping("/deletePlayer/{id}")
 	public String deletePlayer(@PathVariable("id") Long playerId, Model model) {
 		prepository.deleteById(playerId);
 		return "redirect:../playerlist";
 	}
 	
 	// Edit the player function
-    @GetMapping("/edit/{id}")
-    public String editPalyer(@PathVariable("id") Long playerId, Model model) {
+    @GetMapping("/editPlayer/{id}")
+    public String editPlayer(@PathVariable("id") Long playerId, Model model) {
     	model.addAttribute("player", prepository.findById(playerId));
     	model.addAttribute("servers", srepository.findAll());
     	return "editplayer";

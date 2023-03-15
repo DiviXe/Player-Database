@@ -19,11 +19,7 @@ public class Server {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String serverName;
-	
-	//creating link
-	 @ManyToOne
-	 @JoinColumn(name = "servercomputerid")
-	 private ServerComputer servercomputer;
+	private int capacity;
 	 
 	 @OneToMany(mappedBy = "server", cascade = CascadeType.ALL)
 	 @JsonIgnore
@@ -45,13 +41,7 @@ public class Server {
 		this.serverName = serverName;
 	}
 
-	public ServerComputer getServercomputer() {
-		return servercomputer;
-	}
-
-	public void setServercomputer(ServerComputer servercomputer) {
-		this.servercomputer = servercomputer;
-	}
+	
 
 	public List<Player> getPlayers() {
 		return players;
@@ -61,20 +51,33 @@ public class Server {
 		this.players = players;
 	}
 
-	public Server() {
-		super();
-	}
 	
-	public Server(String serverName) {
+	
+	
+	
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+
+	public Server(String serverName, int capacity) {
 		super();
 		this.serverName = serverName;
+		this.capacity = capacity;
 	}
+	
+	public Server() {}
 	
 	@Override
 	public String toString() {
-		return "Server [id=" + id + ", servername=" + serverName + ", servercomputer=" + servercomputer + ", players="
+		return "Server [id=" + id + ", servername=" + serverName + ", capacity=" + capacity +   ", players="
 				+  "]";
 	}
+	
+	
 	
 	
 }

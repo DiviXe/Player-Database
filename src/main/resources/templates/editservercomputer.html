@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Editing a virtual computer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+</head>
+<body class="bg-secondary">
+  <div class="container text-center">
+    <h1>Edit the computer</h1>
+     <div style="display: flex; justify-content: center; align-items: center;">
+    
+    <div class="col-md-4">
+    
+	<form th:object="${servercomputer}" th:action="@{/saveServerComputer}" action="#" method="post">
+      <input type="hidden" id="id" th:field="*{id}" />
+      
+        <label for="computerName"> Computer name</label>
+        <input type="text" id="computerName" th:field="*{computerName}" class="form-control"/>
+        <div th:if="${#fields.hasErrors('computerName')}" th:errors="*{computerName}">The name cannot be resolved</div>
+        <div style="clear: both; display: block; height: 15px;"></div>
+        
+        <label for="computerStatus"> computerStatus</label>
+        <input type="text" id="computerStatus" th:field="*{computerStatus}" class="form-control"/>
+        <div style="clear: both; display: block; height: 15px;"></div>
+        
+        <label for="serverCapacity"> Server capacity</label>
+        <input type="number" min="1" id="serverCapacity" th:field="*{serverCapacity}" class="form-control"/>
+        <div style="clear: both; display: block; height: 15px;"></div>
+        
+        <label for="servlist">Servers</label>
+		<select id="servlist" th:field="*{server}" class="form-control">
+  		<option th:each="server: ${servers}" th:value="${server.id}" th:text="${server.serverName}"></option>
+		</select>
+        
+        <div style="clear: both; display: block; height: 15px;"></div>
+        <input type="submit" class="btn btn-primary" value="save ServerComputer">
+      </form>
+    </div>
+    </div>
+  </div>
+</body>
+<style>
+  body {
+    background-color: #f8f9fa;
+  }
+</style>
+</html>

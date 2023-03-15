@@ -36,12 +36,21 @@ public class PlayerDatabaseApplication {
 			//servers to the database itself
 			log.info("Save servers to the serverlist only admin can access servers and add new ones");
 			
-			srepository.save(new Server("Randuins"));
-			srepository.save(new Server("Albama"));
-			srepository.save(new Server("The Crocket"));
-			srepository.save(new Server("Mindgard"));
-			srepository.save(new Server("Ragnaros"));
+			srepository.save(new Server("Randuins", 2000));
+			srepository.save(new Server("Albama", 1500));
+			srepository.save(new Server("The Crocket", 1300));
+			srepository.save(new Server("Mindgard", 1700));
+			srepository.save(new Server("Ragnaros", 2000));
 			
+			//IMPLEMENTING Server computers
+			screpository.save(new ServerComputer("Windows_1", "OK", 2, srepository.findByServerName("Randuins").get(0)));
+			screpository.save(new ServerComputer("Windows_2", "OK", 2, srepository.findByServerName("Ragnaros").get(0)));
+			screpository.save(new ServerComputer("Windows_3", "OK", 1, srepository.findByServerName("Mindgard").get(0)));
+			screpository.save(new ServerComputer("Windows_4", "OK", 1, srepository.findByServerName("The Crocket").get(0)));
+			screpository.save(new ServerComputer("Windows_5", "OK", 1, srepository.findByServerName("Albama").get(0)));
+			screpository.save(new ServerComputer("Windows_6", "OK_BACKUP_PC", 1, srepository.findByServerName("Ragnaros").get(0)));
+			screpository.save(new ServerComputer("Windows_7", "OK_BACKUP_PC", 1, srepository.findByServerName("Mindgard").get(0)));
+			 
 			//Save players to the database
 			log.info("Save players  to the server");
 			
@@ -53,12 +62,6 @@ public class PlayerDatabaseApplication {
 			prepository.save(new Player("Hetus", "Manu Teeru", 2002, "sillymyy6@gmail.com", "ThemindBlow44", srepository.findByServerName("Ragnaros").get(0)));
 			prepository.save(new Player("Sufule", "Sulkka Pulkka", 1990, "textanddrive@gmail.com", "SickBoi353", srepository.findByServerName("Ragnaros").get(0)));
 			prepository.save(new Player("ArcEnemy", "Erk Herb", 1999, "erbge@gmail.com", "Thesetters99", srepository.findByServerName("Ragnaros").get(0)));
-			
-			
-			//server computers to the database 
-			log.info("Save servercomputers to the serverlist only admin can access computers and add new ones");
-			//IMPLEMENTING TEST
-			screpository.save(new ServerComputer("Test", "Test", "Test", srepository.findByServerName("Randuins").get(0)));
 			
 			
 			log.info("Fetch all players");
