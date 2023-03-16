@@ -42,7 +42,7 @@ public class PlayerController {
 	}
 	
 	//adding player to the database
-	@RequestMapping (value="/add")
+	@RequestMapping (value="/addPlayer")
 	public String addPlayer(Model model) {
 		model.addAttribute("player", new Player());
 		model.addAttribute("servers", srepository.findAll());
@@ -50,10 +50,10 @@ public class PlayerController {
 	}
 	
 	//save the player with validation error
-	@PostMapping("/save")
+	@PostMapping("/savePlayer")
 	public String save(@Valid @ModelAttribute ("player") Player player, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-			System.out.println("Validation error has happened, please recheck.");
+			System.out.println("There has been an error, please recheck the error message.");
 			model.addAttribute("servers", srepository.findAll());
 			return "addplayer";
 		}
@@ -71,7 +71,7 @@ public class PlayerController {
 	// Edit the player function
     @GetMapping("/editPlayer/{id}")
     public String editPlayer(@PathVariable("id") Long playerId, Model model) {
-    	model.addAttribute("player", prepository.findById(playerId));
+    	model.addAttribute("editPlayer", prepository.findById(playerId));
     	model.addAttribute("servers", srepository.findAll());
     	return "editplayer";
     }   

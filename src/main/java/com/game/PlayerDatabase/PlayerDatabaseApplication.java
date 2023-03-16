@@ -43,13 +43,13 @@ public class PlayerDatabaseApplication {
 			srepository.save(new Server("Ragnaros", 2000));
 			
 			//IMPLEMENTING Server computers
-			screpository.save(new ServerComputer("Windows_1", "OK", 2, srepository.findByServerName("Randuins").get(0)));
-			screpository.save(new ServerComputer("Windows_2", "OK", 2, srepository.findByServerName("Ragnaros").get(0)));
-			screpository.save(new ServerComputer("Windows_3", "OK", 1, srepository.findByServerName("Mindgard").get(0)));
-			screpository.save(new ServerComputer("Windows_4", "OK", 1, srepository.findByServerName("The Crocket").get(0)));
-			screpository.save(new ServerComputer("Windows_5", "OK", 1, srepository.findByServerName("Albama").get(0)));
-			screpository.save(new ServerComputer("Windows_6", "OK_BACKUP_PC", 1, srepository.findByServerName("Ragnaros").get(0)));
-			screpository.save(new ServerComputer("Windows_7", "OK_BACKUP_PC", 1, srepository.findByServerName("Mindgard").get(0)));
+			screpository.save(new ServerComputer("Windows_1", "OK", "198.5.56.43", srepository.findByServerName("Randuins").get(0)));
+			screpository.save(new ServerComputer("Windows_2", "OK", "208.64.53.102", srepository.findByServerName("Ragnaros").get(0)));
+			screpository.save(new ServerComputer("Windows_3", "OK", "198.64.21.54", srepository.findByServerName("Mindgard").get(0)));
+			screpository.save(new ServerComputer("Windows_4", "OK", "198.43.78.65", srepository.findByServerName("The Crocket").get(0)));
+			screpository.save(new ServerComputer("Windows_5", "OK", "152.42.67.64", srepository.findByServerName("Albama").get(0)));
+			screpository.save(new ServerComputer("Windows_6", "OK_BACKUP_PC", "151.64.63.123", srepository.findByServerName("Ragnaros").get(0)));
+			screpository.save(new ServerComputer("Windows_7", "OK_BACKUP_PC", "198.20.52.50", srepository.findByServerName("Mindgard").get(0)));
 			 
 			//Save players to the database
 			log.info("Save players  to the server");

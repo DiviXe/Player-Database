@@ -6,20 +6,20 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     
 </head>
-<body class="bg-secondary">
+<body class="bg-secondary" style="color: white;">
 	<h1 class="text-center">All the server computers</h1>
 	<table class="table table-striped table-dark">
 	<thead>
 	<tr>
 	<th scope ="col">Computer name</th>
 	<th scope ="col">Computer status</th>
-	<th scope ="col">Running servers in total</th>
+	<th scope ="col">IP address</th>
 	</tr>
 	<tbody>
 		<tr th:each = "servercomputer : ${servercomputers}">
 		<td th:text="${servercomputer.computerName}">
 		<td th:text="${servercomputer.computerStatus}">
-		<td th:text="${servercomputer.serverCapacity}">
+		<td th:text="${servercomputer.computerIP}">
 		<td th:text="${servercomputer.server.serverName}">
 		
 		<td class="btn btn-success" style="width: 150px;height: 50px;" > <a th:href="@{/editServerComputer/{id}(id=${servercomputer.id})}">Edit computer</a></td>
@@ -34,14 +34,5 @@
 			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
 		</form>
 	</div>
-	
-	
     </body>
-    
-<style>
-body {
-background-color: #f8f9fa;
-}
-</style>
-
 </html>

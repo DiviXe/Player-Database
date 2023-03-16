@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     
 </head>
-<body class="bg-secondary">
+<body class="bg-secondary" style="color: white;">
 	<h1 class="text-center">List of players who are online</h1>
 	<table class="table table-striped table-dark">
 	<thead>
@@ -31,7 +31,7 @@
 		<td class="btn btn-danger" style="width: 150px;height: 50px; margin-bottom: 2%;" > <a th:href="@{/deletePlayer/{id}(id=${player.id})}">Delete Player</a>
 	</tbody>
 	</table>
-	<button onclick="location.href='http://localhost:8080/add'" class="btn btn-success" style="width: 150px;height: 50px" >Add Player</button>
+	<button onclick="location.href='http://localhost:8080/addPlayer'" class="btn btn-success" style="width: 150px;height: 50px" >Add Player</button>
 	<button onclick="location.href='http://localhost:8080/serverlist'" class="btn btn-success" style="width: 220px;height: 50px" >Server Configuration</button>
 	<button onclick="location.href='http://localhost:8080/servercomputerlist'" class="btn btn-success" style="width: 220px;height: 50px" >Server Computers</button>
 	<div class="col-md-4" style="padding:20px 0">
@@ -39,15 +39,6 @@
 			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
 		</form>
 	</div>
-	
-	
     </body>
-    
-<style>
-body {
-background-color: #f8f9fa;
-}
-</style>
-
 </html>
 

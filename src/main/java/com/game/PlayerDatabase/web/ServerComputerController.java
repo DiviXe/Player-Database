@@ -55,7 +55,8 @@ public class ServerComputerController {
 		if (bindingResult.hasErrors()) {
 			System.out.println("Validation error has happened, please recheck.");
 			model.addAttribute("servercomputers", screpository.findAll());
-			return "servercomputer";
+			model.addAttribute("servers", srepository.findAll());
+			return "addservercomputer";
 		}
 		screpository.save(servercomputer);
 		return "redirect:servercomputerlist";

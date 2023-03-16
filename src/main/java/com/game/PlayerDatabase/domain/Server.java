@@ -9,16 +9,24 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Server {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	
+	@NotEmpty(message = "Server name cannot be empty")
+	@Size(min = 3, max = 30)
 	private String serverName;
+	
+	@NotNull(message = "Only numbers are allowed")
+	@Min(value = 100, message = "Capacity must be at least 100")
 	private int capacity;
 	 
 	 @OneToMany(mappedBy = "server", cascade = CascadeType.ALL)
@@ -63,7 +71,7 @@ public class Server {
 		this.capacity = capacity;
 	}
 
-	public Server(String serverName, int capacity) {
+	public Server(@NotEmpty(message = "Server name cannot be empty") @Size(min = 3, max = 30) String serverName, @NotNull(message = "Only numbers are allowed") @Min(value = 2, message = "Capacity must be at least 2") int capacity) {
 		super();
 		this.serverName = serverName;
 		this.capacity = capacity;

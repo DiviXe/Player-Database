@@ -8,9 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 public class Player {
@@ -18,11 +17,24 @@ public class Player {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
-	@NotEmpty(message = "Title Player name cannot be empty")
+	@NotEmpty(message = "Player name cannot be empty")
+	@Size(min = 3, max = 60)
 	private String playerName;
+	
+	@NotEmpty(message = "Your real name should contain first name and last name")
+	@Size(min = 3, max = 60)
 	private String name;
+	
+	//not null for integers!
+	@NotNull(message = "Only give birthdate year.")
 	private Integer birthDateYear;
+	
+	@NotEmpty(message = "Email should be an valid email")
 	private String email;
+	
+	//Pattern REGEX Validation 
+	@NotEmpty(message = "Password shouldn't be empty!")
+	@Size(min = 3, max = 60)	
 	private String password;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -31,7 +43,10 @@ public class Player {
 	
 	public Player() {}
 	
-	public Player(@NotEmpty(message = "Player's name cannot be empty") @Size(min = 6, max = 60)String playerName, String name, Integer birthDateYear, String email, String password, Server server) {
+	public Player(@NotEmpty(message = "Player's name cannot be empty") @Size(min = 3, max = 60)String playerName, @NotEmpty(message = "Your real name should contain first name and last name")
+	@Size(min = 3, max = 60) String name, @NotNull(message = "Only give birthdate year.") Integer birthDateYear, @NotEmpty(message = "Email should be an valid email") String email, 	@NotEmpty(message = "Password shouldn't be empty!")
+	@Size(min = 3, max = 60) 
+	String password, Server server) {
 		super();
 		this.playerName = playerName;
 		this.name = name;

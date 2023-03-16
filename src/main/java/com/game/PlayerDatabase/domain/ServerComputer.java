@@ -1,15 +1,14 @@
 package com.game.PlayerDatabase.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class ServerComputer {
@@ -17,9 +16,15 @@ public class ServerComputer {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     
+    @NotEmpty(message = "PC's name cannot be empty")
     private String computerName;
+    @NotEmpty(message = "Status should contain at least a word ")
+    @Size(min = 2, max = 60)
     private String computerStatus;
-    int  serverCapacity;
+    
+    @NotEmpty(message = "The ip shouldn't be empty")
+    @Size(min = 10, max = 60)
+    private String  computerIP;
     
     @ManyToOne
     @JoinColumn(name = "server_id")
@@ -27,11 +32,12 @@ public class ServerComputer {
     
     public ServerComputer() {}
     
-    public ServerComputer(String computerName, String computerStatus, int serverCapacity, Server server) {
+    public ServerComputer(@NotEmpty(message = "PC's name cannot be empty")String computerName, @NotEmpty(message = "Status should contain at least a word ") @Size(min = 2, max = 60)String computerStatus, @NotEmpty(message = "The ip shouldn't be empty")
+    @Size(min = 10, max = 60) String computerIP, Server server) {
         super();
         this.computerName = computerName;
         this.computerStatus = computerStatus;
-        this.serverCapacity = serverCapacity;
+        this.computerIP = computerIP;
         this.server = server;
     }
     
@@ -59,12 +65,12 @@ public class ServerComputer {
         this.computerStatus = computerStatus;
     }
     
-    public int getServerCapacity() {
-        return serverCapacity;
+    public String getComputerIP() {
+        return computerIP;
     }
     
-    public void setServerCapacity(int serverCapacity) {
-        this.serverCapacity = serverCapacity;
+    public void setComputerIP(String computerIP) {
+        this.computerIP = computerIP;
     }
     
     public Server getServer() {
@@ -78,6 +84,6 @@ public class ServerComputer {
     @Override
     public String toString() {
         return "ServerComputer [id=" + id + ", computerName=" + computerName + ", computerStatus=" + computerStatus
-                + ", serverCapacity=" + serverCapacity + "]";
+                + ", computerIP=" + computerIP + "]";
     }
 }

@@ -21,12 +21,12 @@
         <div th:if="${#fields.hasErrors('computerName')}" th:errors="*{computerName}">The name cannot be resolved</div>
         <div style="clear: both; display: block; height: 15px;"></div>
         
-        <label for="computerStatus"> computerStatus</label>
+        <label for="computerStatus"> computer Status</label>
         <input type="text" id="computerStatus" th:field="*{computerStatus}" class="form-control"/>
         <div style="clear: both; display: block; height: 15px;"></div>
         
-        <label for="serverCapacity"> Server capacity</label>
-        <input type="number" min="1" id="serverCapacity" th:field="*{serverCapacity}" class="form-control"/>
+        <label for="computerIP"> Computer IP address</label>
+        <input type="text" id="computerIP" th:field="*{computerIP}" class="form-control"/>
         <div style="clear: both; display: block; height: 15px;"></div>
         
         <label for="servlist">Servers</label>
@@ -41,9 +41,4 @@
     </div>
   </div>
 </body>
-<style>
-  body {
-    background-color: #f8f9fa;
-  }
-</style>
 </html>

@@ -13,11 +13,10 @@
     
     <div class="col-md-4">
     
-      <form th:object="${player}" th:action="@{../save}" action="#" method="post">
+      <form th:object="${editPlayer}" th:action="@{/savePlayer}" action="#" method="post">
       <input type="hidden" id="id" th:field="*{id}" />
         <label for="playerName"> Player name</label>
         <input type="text" id="playerName" th:field="*{playerName}" class="form-control"/>
-        <div th:if="${#fields.hasErrors('playerName')}" th:errors="*{playerName}">The name cannot be resolved</div>
         <div style="clear: both; display: block; height: 15px;"></div>
         
         <label for="name"> Real name</label>
@@ -33,7 +32,7 @@
         <div style="clear: both; display: block; height: 15px;"></div>
         
         <label for="password"> Password</label>
-        <input type="password" min="1" th:field="*{password}" class="form-control"/> 
+        <input type="text" min="1" th:field="*{password}" class="form-control"/> 
         <div style="clear: both; display: block; height: 15px;"></div>
         
         <label for="servlist">Server selection</label>
@@ -47,9 +46,4 @@
     </div>
   </div>
 </body>
-<style>
-  body {
-    background-color: #f8f9fa;
-  }
-</style>
 </html>

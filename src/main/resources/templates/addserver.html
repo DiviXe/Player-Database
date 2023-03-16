@@ -20,6 +20,7 @@
         
         <label for="capacity"> Server Capacity</label>
         <input type="text" id="capacity" th:field="*{capacity}" class="form-control"/>
+        <div th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}">Capacity error, most likely because of number</div>
         <div style="clear: both; display: block; height: 15px;"></div>
         
         <div style="clear: both; display: block; height: 15px;"></div>
@@ -29,9 +30,4 @@
     </div>
   </div>
 </body>
-<style>
-  body {
-    background-color: #f8f9fa;
-  }
-</style>
 </html>
