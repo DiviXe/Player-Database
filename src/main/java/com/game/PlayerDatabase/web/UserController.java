@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.game.PlayerDatabase.domain.PlayerDatabaseUserRepository;
 import com.game.PlayerDatabase.domain.SignUpForm;
 
-import books.com.Bookstore.domain.ApplicationUserRepository;
-
 
 @Controller
 public class UserController {
@@ -20,7 +18,7 @@ public class UserController {
 	private PlayerDatabaseUserRepository repository;
 	
 	@GetMapping(value= {"/", "index"})
-	public String showMainPage(@AuthenticationPrincipal ApplicationUserRepository userRepository, Model model) {
+	public String showMainPage(@AuthenticationPrincipal PlayerDatabaseUserRepository userRepository, Model model) {
 	return "index";
 	}
 	
