@@ -22,11 +22,11 @@
 		<td th:text="${servercomputer.computerIP}">
 		<td th:text="${servercomputer.server.serverName}">
 		
-		<td class="btn btn-success" style="width: 150px;height: 50px;" > <a th:href="@{/editServerComputer/{id}(id=${servercomputer.id})}">Edit computer</a></td>
-		<td class="btn btn-danger" style="width: 150px;height: 50px; margin-bottom: 2%;" > <a th:href="@{/deleteServerComputer/{id}(id=${servercomputer.id})}">Delete computer</a></td>
+		<td sec:authorize="hasAuthority('ROLE_ADMIN')"class="btn btn-success" style="width: 150px;height: 50px;" > <a th:href="@{/editServerComputer/{id}(id=${servercomputer.id})}">Edit computer</a></td>
+		<td sec:authorize="hasAuthority('ROLE_ADMIN')"class="btn btn-danger" style="width: 150px;height: 50px; margin-bottom: 2%;" > <a th:href="@{/deleteServerComputer/{id}(id=${servercomputer.id})}">Delete computer</a></td>
 	</tbody>
 	</table>
-	<button onclick="location.href='http://localhost:8080/addservercomputer'" class="btn btn-success" style="width: 150px;height: 50px" >Add computer</button>
+	<button sec:authorize="hasAuthority('ROLE_ADMIN')"onclick="location.href='http://localhost:8080/addservercomputer'" class="btn btn-success" style="width: 150px;height: 50px " >Add computer</button>
 	<button onclick="location.href='http://localhost:8080/serverlist'" class="btn btn-success" style="width: 220px;height: 50px" >Server Configuration</button>
 	<button onclick="location.href='http://localhost:8080/playerlist'" class="btn btn-success" style="width: 220px;height: 50px" >Playerlist</button>
 	<div class="col-md-4" style="padding:20px 0">

@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Adding new user to the dataase</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+</head>
+<body class="bg-secondary">
+  <div class="container text-center">
+    <h1>Sign-up</h1>
+    <div style="display: flex; justify-content: center; align-items: center;">
+    <div class="col-md-4">
+      <form th:object="${signupform}" th:action="@{/saveuser}" action="#" method="post">
+      
+        <label for="username"> Username :</label>
+        <input type="text" id="username" th:field="*{username}" class="form-control"/>
+        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</div>
+        <div style="clear: both; display: block; height: 15px;"></div>
+        
+        <label for="password"> Password :</label>
+        <input type="password" id="password" th:field="*{password}" class="form-control"/>
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
+        <div style="clear: both; display: block; height: 15px;"></div>
+        
+        <label for="password"> Re-type Password:</label>
+        <input type="password" min="500" id="bdate" th:field="*{passwordCheck}" class="form-control"/>
+        <div th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}"> Password is not a match</div>
+        <div style="clear: both; display: block; height: 15px;"></div>
+
+		<div style="clear: both; display: block; height: 15px;"></div>
+        <input type="submit" class="btn btn-primary" value="Signup">
+      </form>
+    </div>
+    </div>
+  </div>
+</body>
+</html>

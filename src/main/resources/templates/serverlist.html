@@ -20,14 +20,14 @@
 		<td th:text="${server.capacity}">
 		
 		
-		<td class="btn btn-success" style="width: 150px;height: 50px;"> <a th:href="@{/editServer/{id}(id=${server.id})}">Edit Server</a> </td>
-		<td class="btn btn-danger" style="width: 150px;height: 50px; margin-bottom: 2%;"> <a th:href="@{/deleteServer/{id}(id=${server.id})}">Delete Server</a>
+		<td sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-success" style="width: 150px;height: 50px;"> <a th:href="@{/editServer/{id}(id=${server.id})}">Edit Server</a> </td>
+		<td sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-danger" style="width: 150px;height: 50px; margin-bottom: 2%;"> <a th:href="@{/deleteServer/{id}(id=${server.id})}">Delete Server</a>
 </td>
 	</tbody>
 	</table>
 	<button onclick="location.href='http://localhost:8080/addserver'" class="btn btn-success" style="width: 150px;height: 50px" >Add server</button>
 	<button onclick="location.href='http://localhost:8080/playerlist'" class="btn btn-success" style="width: 220px;height: 50px" >Playerlist</button>
-	<button onclick="location.href='http://localhost:8080/servercomputerlist'" class="btn btn-success" style="width: 220px;height: 50px" >Server Computers</button>
+	<button sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='http://localhost:8080/servercomputerlist'" class="btn btn-success" style="width: 220px;height: 50px" >Server Computers</button>
 	<div class="col-md-4" style="padding:20px 0">
 		<form th:action="@{/logout}" method="post">
 			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>

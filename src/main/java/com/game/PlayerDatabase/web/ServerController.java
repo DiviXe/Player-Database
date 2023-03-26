@@ -3,6 +3,7 @@ package com.game.PlayerDatabase.web;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -60,7 +61,8 @@ public class ServerController {
 		return "redirect:serverlist";
 	}
 	
-	//delete the server function 
+	//delete the server function
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	@GetMapping("/deleteServer/{id}")
 	public String deleteServer(@PathVariable("id") Long serverId, Model model) {
 	    srepository.deleteById(serverId);
@@ -68,6 +70,7 @@ public class ServerController {
 	}
 	
 	// Edit the server function
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/editServer/{id}")
     public String editServer(@PathVariable("id") Long serverId, Model model) {
     	model.addAttribute("server", srepository.findById(serverId));

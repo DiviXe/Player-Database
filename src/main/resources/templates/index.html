@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Welcome to player database</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
-<body>
-
+<body class="bg-secondary" style="color: white;">
+    <h1 class="text-center">Player database </h1>
+	<h3 class="text-center">Hello, <b sec:authentication="name"> </b> </h3>
+	
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; padding:20px;">
+        <button onclick="location.href='http://localhost:8080/playerlist'" class="btn btn-success" style="width: 150px;height: 50px" >Player list</button>
+        <button onclick="location.href='http://localhost:8080/serverlist'" class="btn btn-success" style="width: 220px;height: 50px" >Server Configuration</button>
+        <button sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='http://localhost:8080/servercomputerlist'" class="btn btn-success" style="width: 220px;height: 50px" >Server Computers</button>
+    </div>
+    <div style="display: flex; justify-content: center; padding:20px;">
+        <button onclick="location.href='http://localhost:8080/signup'" class="btn btn-success" style="width: 220px;height: 50px" >Register a new user</button>
+    </div>
+    <div style="display: flex; justify-content: center; padding:20px 0;">
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+        </form>
+    </div>
 </body>
 </html>

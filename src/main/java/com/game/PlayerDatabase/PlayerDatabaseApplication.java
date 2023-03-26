@@ -1,5 +1,7 @@
 package com.game.PlayerDatabase;
 
+import java.util.Arrays;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -8,11 +10,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.game.PlayerDatabase.domain.Player;
+import com.game.PlayerDatabase.domain.PlayerDatabaseUser;
+import com.game.PlayerDatabase.domain.PlayerDatabaseUserRepository;
 import com.game.PlayerDatabase.domain.PlayerRepository;
 import com.game.PlayerDatabase.domain.Server;
 import com.game.PlayerDatabase.domain.ServerComputer;
 import com.game.PlayerDatabase.domain.ServerComputerRepository;
 import com.game.PlayerDatabase.domain.ServerRepository;
+
 
 
 
@@ -29,9 +34,18 @@ public class PlayerDatabaseApplication {
 	
 	
 	@Bean
-	public CommandLineRunner  demoData(PlayerRepository prepository, ServerRepository srepository, ServerComputerRepository screpository) {
+	public CommandLineRunner  demoData(PlayerRepository prepository, ServerRepository srepository, ServerComputerRepository screpository, PlayerDatabaseUserRepository pdrepository) {
 		return (args) -> {
-	
+			
+			//saving users
+			log.info("Save users to the database");
+			
+			PlayerDatabaseUser user1 = new PlayerDatabaseUser("Leo", "Ahopalo", "ADMIN", "admin",
+			"$2a$10$2Gm74iOxuJZsVVKIF47aiut3PBzMVI8REsQ.JngNDu/rrJoS8dum.");
+				
+			PlayerDatabaseUser user2 = new PlayerDatabaseUser("Leo", "testi", "USER", "user", 
+			"$2a$10$2Gm74iOxuJZsVVKIF47aiut3PBzMVI8REsQ.JngNDu/rrJoS8dum.");
+			pdrepository.saveAll(Arrays.asList(user1, user2));
 			
 			//servers to the database itself
 			log.info("Save servers to the serverlist only admin can access servers and add new ones");
