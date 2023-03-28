@@ -11,7 +11,7 @@
     <h1>Sign-up</h1>
     <div style="display: flex; justify-content: center; align-items: center;">
     <div class="col-md-4">
-      <form th:object="${signupform}" th:action="@{/saveuser}" action="#" method="post">
+      <form th:object="${regularuser}" th:action="@{/saveuser}" action="#" method="post">
       
         <label for="username"> Username :</label>
         <input type="text" id="username" th:field="*{username}" class="form-control"/>

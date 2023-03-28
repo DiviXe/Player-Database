@@ -29,9 +29,10 @@ public class WebSecurityConfig {
 
     };
 	
-	//admin URLS, eli voidaan määritellä urlei, jotka ovat vain adminille näkyviä. 
+	//admin ulr's known issues
 	private static final AntPathRequestMatcher[] ADMIN_LIST_URLS = {
             new AntPathRequestMatcher("/admin/**"),
+            
     };
 	
 	
@@ -58,7 +59,7 @@ public class WebSecurityConfig {
         .csrf()
         .disable();
 
-return http.build();
+		return http.build();
 
 		
 	}

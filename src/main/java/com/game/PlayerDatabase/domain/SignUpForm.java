@@ -18,6 +18,26 @@ public class SignUpForm {
 
     @NotEmpty (message = "User cannot be empty.")
     private String role = "USER";
+    
+    public SignUpForm() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    
+    
+
+	public SignUpForm(@NotEmpty(message = "Username cannot be empty!") @Size(min = 5, max = 30) String username,
+		@NotEmpty(message = "Password cannot be empty!") @Size(min = 7, max = 30) String password,
+		@NotEmpty(message = "Password has to be a match") @Size(min = 7, max = 30) String passwordCheck,
+		@NotEmpty(message = "User cannot be empty.") String role) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.passwordCheck = passwordCheck;
+		this.role = role;
+	}
+
+
 
 	public String getUsername() {
 		return username;
@@ -50,6 +70,8 @@ public class SignUpForm {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	
     
     
 }
