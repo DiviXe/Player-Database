@@ -43,6 +43,7 @@ public class PlayerDatabaseRestTests {
 	public void apiStatusOkPlayers() throws Exception {
 		mockMvc.perform(get("/api/players")).andExpect(status().isOk());
 		mockMvc.perform(get("/api/servers")).andExpect(status().isOk());
+
 	}
 
 	//servercomputers mockMvc not working?

@@ -1,6 +1,7 @@
 package com.game.PlayerDatabase.domain;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,17 +14,21 @@ import jakarta.validation.constraints.Size;
 @Entity
 public class ServerComputer {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     
     @NotEmpty(message = "PC's name cannot be empty")
+    @Column(name ="computer_name")
     private String computerName;
+ 
     @NotEmpty(message = "Status should contain at least a word ")
     @Size(min = 2, max = 60)
+    @Column(name ="computer_status")
     private String computerStatus;
     
     @NotEmpty(message = "The ip shouldn't be empty")
     @Size(min = 10, max = 60)
+    @Column(name ="computer_ip")
     private String  computerIP;
     
     @ManyToOne

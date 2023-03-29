@@ -33,6 +33,7 @@ public class WebSecurityConfig {
 	private static final AntPathRequestMatcher[] ADMIN_LIST_URLS = {
             new AntPathRequestMatcher("/admin/**"),
             
+            
     };
 	
 	

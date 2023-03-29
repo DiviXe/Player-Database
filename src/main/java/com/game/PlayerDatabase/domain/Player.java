@@ -1,5 +1,6 @@
 package com.game.PlayerDatabase.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +20,7 @@ public class Player {
 	
 	@NotEmpty(message = "Player name cannot be empty")
 	@Size(min = 3, max = 60)
+	@Column(name ="player_name")
 	private String playerName;
 	
 	@NotEmpty(message = "Your real name should contain first name and last name")
@@ -27,6 +29,7 @@ public class Player {
 	
 	//not null for integers!
 	@NotNull(message = "Only give birthdate year.")
+	@Column(name ="birth_date_year")
 	private Integer birthDateYear;
 	
 	@NotEmpty(message = "Email should be an valid email")
@@ -38,7 +41,7 @@ public class Player {
 	private String password;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "serverid")
+	@JoinColumn(name = "server_id")
 	private Server server;
 	
 	public Player() {}
