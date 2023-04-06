@@ -1,6 +1,7 @@
 package com.game.PlayerDatabase.domain;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class SignUpForm {
@@ -10,10 +11,12 @@ public class SignUpForm {
 
     @NotEmpty (message = "Password cannot be empty!")
     @Size(min=7, max=30)
+    @Pattern(regexp = "^(?=.*[0-9]).*$", message = "Password must contain at least one number")
     private String password = "";
 
     @NotEmpty (message = "Password has to be a match")
     @Size(min=7, max=30)
+    @Pattern(regexp = "^(?=.*[0-9]).*$", message = "Password must contain at least one number")
     private String passwordCheck = "";
 
     @NotEmpty (message = "User cannot be empty.")
@@ -27,8 +30,9 @@ public class SignUpForm {
     
 
 	public SignUpForm(@NotEmpty(message = "Username cannot be empty!") @Size(min = 5, max = 30) String username,
-		@NotEmpty(message = "Password cannot be empty!") @Size(min = 7, max = 30) String password,
-		@NotEmpty(message = "Password has to be a match") @Size(min = 7, max = 30) String passwordCheck,
+		@NotEmpty(message = "Password cannot be empty!") @Size(min = 7, max = 30)     @Pattern(regexp = "^(?=.*[0-9]).*$", message = "Password must contain at least one number") String password,
+		@NotEmpty(message = "Password has to be a match") @Size(min = 7, max = 30)    @Pattern(regexp = "^(?=.*[0-9]).*$", message = "Password must contain at least one number")
+		String passwordCheck,
 		@NotEmpty(message = "User cannot be empty.") String role) {
 		super();
 		this.username = username;

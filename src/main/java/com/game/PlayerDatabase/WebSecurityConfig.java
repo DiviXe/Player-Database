@@ -25,44 +25,39 @@ public class WebSecurityConfig {
             new AntPathRequestMatcher("/h2-console/**"),
             new AntPathRequestMatcher("/playerlist/**"),
             new AntPathRequestMatcher("/serverlist/**"),
-            new AntPathRequestMatcher("/servercomputerlist/**")
-
+            new AntPathRequestMatcher("/servercomputerlist/**"),
     };
 	
-	//admin ulr's known issues
 	private static final AntPathRequestMatcher[] ADMIN_LIST_URLS = {
             new AntPathRequestMatcher("/admin/**"),
-            
-            
     };
-	
 	
 	@Bean
 	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-		
-		http.authorizeHttpRequests().requestMatchers(ADMIN_LIST_URLS).hasAuthority("ADMIN")
-		.and()
-		.authorizeHttpRequests().requestMatchers(WHITE_LIST_URLS).permitAll()
-		.anyRequest().authenticated()
-        .and()
-        .formLogin()
-        //.loginPage("/custom-login") ei toimi?
-        .defaultSuccessUrl("/index", true)
-        .and()
-        .logout()
-        .permitAll()
-        .and()
-        .headers()
-        .frameOptions().disable()
-        .and()
-        .cors()
-        .and()
-        .csrf()
-        .disable();
+	    
+	    http.authorizeHttpRequests().requestMatchers(ADMIN_LIST_URLS).hasAuthority("ADMIN")
+	        .and()
+	        .authorizeHttpRequests().requestMatchers(WHITE_LIST_URLS).permitAll()
+	        .anyRequest().authenticated()
+	        .and()
+	        .formLogin()
+	        .defaultSuccessUrl("/index", true)
+	        .and()
+	        .logout()
+	        .permitAll()
+	        .and()
+	        .headers()
+	        .frameOptions().disable()
+	        .and()
+	        .cors()
+	        .and()
+	        .csrf()
+	        .disable()
+	        .exceptionHandling()
+	        .accessDeniedPage("/403");
 
-		return http.build();
+	    return http.build();
 
-		
 	}
 	
 	@Autowired

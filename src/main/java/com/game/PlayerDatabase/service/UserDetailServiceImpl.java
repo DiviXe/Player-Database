@@ -30,7 +30,7 @@ public UserDetails loadUserByUsername(String username) throws UsernameNotFoundEx
 	
 	PlayerDatabaseUser curruser = repository.findByUsername(username);
 	
-	//returning null is user is not found 
+	//returning null if user is not found 
 	UserBuilder builder = null;
 	if (curruser == null) {
     	throw new UsernameNotFoundException("User not found.");

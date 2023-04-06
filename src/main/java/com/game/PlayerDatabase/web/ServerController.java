@@ -1,7 +1,5 @@
 package com.game.PlayerDatabase.web;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -21,7 +19,6 @@ import jakarta.validation.Valid;
 
 @Controller
 public class ServerController {
-	private static final Logger log = LoggerFactory.getLogger(PlayerController.class);
 
 	//Adding repositories
 	

@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -37,7 +38,8 @@ public class Player {
 	
 	//Pattern REGEX Validation 
 	@NotEmpty(message = "Password shouldn't be empty!")
-	@Size(min = 3, max = 60)	
+	@Size(min = 7, max = 60)
+	@Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9]).*$", message = "Password must contain at least one uppercase letter and one digit")
 	private String password;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -48,7 +50,7 @@ public class Player {
 	
 	public Player(@NotEmpty(message = "Player's name cannot be empty") @Size(min = 3, max = 60)String playerName, @NotEmpty(message = "Your real name should contain first name and last name")
 	@Size(min = 3, max = 60) String name, @NotNull(message = "Only give birthdate year.") Integer birthDateYear, @NotEmpty(message = "Email should be an valid email") String email, 	@NotEmpty(message = "Password shouldn't be empty!")
-	@Size(min = 3, max = 60) 
+	@Size(min = 3, max = 60) @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9]).*$", message = "Password must contain at least one uppercase letter and one digit")
 	String password, Server server) {
 		super();
 		this.playerName = playerName;
