@@ -18,7 +18,7 @@ import jakarta.validation.constraints.Size;
 @Entity
 public class Server {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotEmpty(message = "Server name cannot be empty")
